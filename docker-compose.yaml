@@ -1,0 +1,36 @@
+version: '3.6'
+
+services:
+  php:
+    build: .
+    volumes:
+      - ./:/var/www
+      - ./docker/php.ini:/usr/local/etc/php/php.ini
+    env_file:
+      - ./docker/image.env
+  webserver:
+    image: nginx:alpine
+    container_name: webserver
+    restart: unless-stopped
+    tty: true
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./:/var/www
+      - ./docker/conf.d/:/etc/nginx/conf.d/
+    links:
+      - postgres
+      - php
+  postgres:
+    image: postgres
+    restart: always
+    ports:
+    - "5433:5432"
+    environment:
+      POSTGRES_HOST_AUTH_METHOD: trust
+    volumes:
+    - pgdata:/var/lib/postgresql/data
+
+volumes:
+  pgdata:

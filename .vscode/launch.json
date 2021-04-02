@@ -1,25 +1,3 @@
-# ppn-docker
-PHP + Postgress + Nginx Docker server
-
-# Usage
-
-Clone repo and run command.
-```shell
-cd ppn-docker &&
-docker-compose up --build
-```
-
-# App Root
-
-Copy source code to: `\html`
-
-# VSCode xdebug
-
-1. Install vscode extension.
-[PHP Debug](https://marketplace.visualstudio.com/items?itemName=felixfbecker.php-debug)
-
-2.  Config `launch.json` file.
-```json
 {
     "version": "0.2.0",
     "configurations": [
@@ -49,4 +27,3 @@ Copy source code to: `\html`
         }
     ]
 }
-```
